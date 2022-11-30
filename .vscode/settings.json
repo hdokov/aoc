@@ -1,0 +1,51 @@
+{
+  "files.watcherExclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/log": true,
+    "**/.yarn": true,
+    "**/.pnp.*": true,
+    ".husky/_": true,
+    ".pnp.cjs": true,
+    ".pnp.loader.mjs": true,
+    "build": true
+  },
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true,
+    ".pnp.cjs": true,
+    ".pnp.loader.mjs": true,
+    "build": true
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
+  "editor.rulers": [120],
+  "editor.tabSize": 2,
+  "eslint.enable": true,
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.nodePath": ".yarn/sdks",
+  "eslint.rules.customizations": [{"rule": "*", "severity": "warn"}],
+  "eslint.packageManager": "yarn",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}
