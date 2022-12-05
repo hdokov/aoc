@@ -13,12 +13,16 @@ Array.prototype.first = function (size) {
 }
 
 Array.prototype.inGroupsOf = function (size, callback) {
+  const result = []
+  size = size ? size : 1
   for (const i of this.keys()) {
     if ((i + 1) % size === 0) {
-      callback(this.slice(i - size + 1, i + 1))
+      const group = this.slice(i - size + 1, i + 1)
+      callback && callback(group)
+      result.push(group)
     }
   }
-  return this
+  return result
 }
 
 export default ''
