@@ -1,4 +1,5 @@
 import fs from 'fs'
+import './enhanceArrays.mjs'
 
 const input = `    [D]    
 [N] [C]    
@@ -30,7 +31,7 @@ const crates2 = transpose(
     })
 ).map(a => a.filter(e => e !== ' ' && isNaN(new Number(e))))
 
-console.log(crates2)
+//console.log(crates2)
 
 const moves2 = moves
   .split('\n')
@@ -41,15 +42,17 @@ const moves2 = moves
       .filter(l => l !== '' && !isNaN(new Number(l)))
       .map(n => new Number(n).valueOf())
   )
-console.log(moves2)
+//console.log(moves2)
 
 // Part 1
-// moves2.forEach(m => {
-//   for (let i = 0; i < m[0]; i++) {
-//     crates2[m[2] - 1].push(crates2[m[1] - 1].pop())
-//   }
-// })
-// console.log(crates2)
+const cratesCopy = crates2.dup()
+moves2.forEach(m => {
+  for (let i = 0; i < m[0]; i++) {
+    cratesCopy[m[2] - 1].push(cratesCopy[m[1] - 1].pop())
+  }
+})
+//console.log(cratesCopy)
+console.log('P1', cratesCopy.map(l => l[l.length - 1]).join(''))
 
 // Part 2
 moves2.forEach(m => {
@@ -57,9 +60,9 @@ moves2.forEach(m => {
   for (let i = 0; i < m[0]; i++) {
     moved.push(crates2[m[1] - 1].pop())
   }
-  console.log(m, moved)
+  //console.log(m, moved)
   crates2[m[2] - 1] = crates2[m[2] - 1].concat(moved.reverse())
 })
-console.log(crates2)
+//console.log(crates2)
 
-console.log(crates2.map(l => l[l.length - 1]).join(''))
+console.log('P2', crates2.map(l => l[l.length - 1]).join(''))

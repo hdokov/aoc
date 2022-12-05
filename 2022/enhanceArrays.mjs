@@ -3,13 +3,35 @@ Array.prototype.transpose = function () {
 }
 
 Array.prototype.last = function (size) {
-  const slice = size ? size : 1
-  return this.slice(this.length - slice, this.length)
+  if (size) {
+    return this.slice(this.length - slice, this.length)
+  } else {
+    return this[this.length - 1]
+  }
 }
 
 Array.prototype.first = function (size) {
-  const slice = size ? size : 1
-  return this.slice(0, slice)
+  if (size) {
+    return this.slice(0, size)
+  } else {
+    return this[0]
+  }
+}
+
+Array.prototype.intersection = function (other) {
+  return this.filter(e => other.includes(e))
+}
+
+Array.prototype.exclude = function (other) {
+  return this.filter(e => !other.includes(e))
+}
+
+Array.prototype.unique = function () {
+  return [...newSet(this)]
+}
+
+Array.prototype.sortN = function () {
+  return this.sort((a, b) => a - b)
 }
 
 Array.prototype.inGroupsOf = function (size, callback) {
@@ -23,6 +45,10 @@ Array.prototype.inGroupsOf = function (size, callback) {
     }
   }
   return result
+}
+
+Array.prototype.dup = function () {
+  return JSON.parse(JSON.stringify(this))
 }
 
 export default ''
