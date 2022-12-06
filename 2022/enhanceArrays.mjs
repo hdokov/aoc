@@ -27,7 +27,7 @@ Array.prototype.exclude = function (other) {
 }
 
 Array.prototype.unique = function () {
-  return [...newSet(this)]
+  return [...new Set(this)]
 }
 
 Array.prototype.sortN = function () {
