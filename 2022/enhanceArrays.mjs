@@ -4,7 +4,7 @@ Array.prototype.transpose = function () {
 
 Array.prototype.last = function (size) {
   if (size) {
-    return this.slice(this.length - slice, this.length)
+    return this.slice(this.length - size, this.length)
   } else {
     return this[this.length - 1]
   }
