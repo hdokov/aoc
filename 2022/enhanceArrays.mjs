@@ -51,5 +51,9 @@ Array.prototype.dup = function () {
   return JSON.parse(JSON.stringify(this))
 }
 
+Object.prototype.dup = function () {
+  return JSON.parse(JSON.stringify(this))
+}
+
 export default ''
 //console.log([1, 2, 3, 4, 5, 6].inGroupsOf(2, g => console.log('g', g)))
