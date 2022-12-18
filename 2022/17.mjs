@@ -3,11 +3,9 @@ import './enhanceArrays.mjs'
 
 const input = `>>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>`
 
-const simulation = true
+const simulation = false
 
-const data = simulation ? input : fs.readFileSync('input-17.txt', 'utf-8')
-const heights = fs.readFileSync('17.txt', 'utf-8').split('\n').map(Number)
-console.log(heights.first(10))
+const data = simulation ? input : fs.readFileSync('input-17-2.txt', 'utf-8')
 const jets = data.split('').map(j => (j === '<' ? -1 : 1))
 
 const shapes = [
@@ -35,7 +33,6 @@ for (let y = 0; y < 5000; y++) {
 }
 
 function moveX(rock, direction) {
-  //console.log(rock, direction)
   if (rock.x + direction < 0 || rock.x + rock.w + direction > 7) return
 
   const offsetX = rock.x + direction
@@ -46,7 +43,6 @@ function moveX(rock, direction) {
     }
   }
 
-  //console.log('moving')
   rock.x += direction
 }
 
@@ -69,28 +65,26 @@ function moveY(rock) {
 function place(rock) {
   for (let x = 0; x < rock.w; x++) {
     for (let y = 0; y < rock.h; y++) {
-      shaft[y + rock.y][x + rock.x] += rock.shape[y][x] * ((shapeIndex % 5) + 1)
+      shaft[y + rock.y][x + rock.x] += rock.shape[y][x]
     }
   }
 }
 
-const maxRocks = 11
+const maxRocks = 2022
 const rocks = []
 
 let shapeIndex = 0
 let jetIndex = 0
 
 for (let r = 0; r < maxRocks; r++) {
-  const shape = shapes[shapeIndex++ % 5]
+  const shape = shapes[r % 5]
   const rock = {
     shape: shape,
     h: shape.length,
     w: shape[0].length,
     x: 2,
-    y: rocks.length === 0 ? 3 : rocks[0].y + rocks[0].h + 3
+    y: shaft.map(JSON.stringify).indexOf(JSON.stringify([0, 0, 0, 0, 0, 0, 0])) + 3
   }
-
-  //console.log(rock)
 
   for (let y = rock.y; y > -2; y--) {
     moveX(rock, jets[jetIndex++ % 40])
@@ -101,26 +95,18 @@ for (let r = 0; r < maxRocks; r++) {
   }
 
   rocks.unshift(rock)
-  const h = shaft.map(JSON.stringify).indexOf(JSON.stringify([0, 0, 0, 0, 0, 0, 0]))
-  if (h !== heights[r]) {
-    console.log('diff', h, heights[r], r, jetIndex, shapeIndex)
-    break
-  }
 }
 
 const shapeS = ' @#$%&'
 
-console.log(
-  shaft
-    .first(25)
-    .reverse()
-    .map(r => r.map(c => (c > 0 ? c : '.')).join(''))
-    .join('\n')
-)
+// console.log(
+//   shaft
+//     .first(40)
+//     .reverse()
+//     .map(r => r.map(c => (c > 0 ? c : '.')).join(''))
+//     .join('\n')
+// )
 console.log(rocks[0].y + rocks[0].h, rocks.length, jets.length, jetIndex)
 console.log(shaft.map(JSON.stringify).indexOf(JSON.stringify([0, 0, 0, 0, 0, 0, 0])))
 //3175
 //1555113636385
-
-//1474
-//2100

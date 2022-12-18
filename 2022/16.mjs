@@ -16,7 +16,7 @@ Valve JJ has flow rate=21; tunnel leads to valve II`
 const simulation = false
 const s = new Date()
 
-const data = simulation ? input : fs.readFileSync('input-16.txt', 'utf-8')
+const data = simulation ? input : fs.readFileSync('16.txt', 'utf-8')
 
 const points = data.split('\n').map(l => {
   const [valve, debit, ...leadsTo] = l.match(/([A-Z]{2})|(\d+)/g)
@@ -73,7 +73,7 @@ function visit(identifier, timeRemaining, visited) {
 let k = 0
 function doubleVisit(identifier1, identifier2, timeRemaining1, timeRemaining2, visited) {
   k++
-  if (k > 3) {
+  if (k > 3000000000) {
     console.log('boom')
     exit('boom')
   }
@@ -113,7 +113,7 @@ function doubleVisit(identifier1, identifier2, timeRemaining1, timeRemaining2, v
         const t2 = timeRemaining2 - p2.distance[np2.valve]
 
         if (t1 < 2 && t2 < 2) {
-          console.log(0, visited, rmp)
+          //console.log(0, visited, rmp)
           return 0
         }
 
